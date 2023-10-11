@@ -1,15 +1,16 @@
 package edu.hw1;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static edu.hw1.Task8.knightBoardCapture;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task8Test {
 
     @Test
-    public void trueCaseTest() {
+    @DisplayName("Test for a true case of Knight's board capture (should return true)")
+    void knightBoardCapture_shouldReturnTrueForValidBoard() {
         int[][] board = {
             {0, 0, 0, 1, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -20,7 +21,8 @@ public class Task8Test {
             {0, 1, 0, 0, 0, 0, 0, 1},
             {0, 0, 0, 0, 1, 0, 0, 0}
         };
-        assertTrue(knightBoardCapture(board));
+        assertThat(knightBoardCapture(board)).isTrue();
+
         int[][] board1 = {
             {1, 0, 0, 0, 0, 0, 0, 1},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -31,11 +33,12 @@ public class Task8Test {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {1, 0, 0, 0, 0, 0, 0, 1}
         };
-        assertTrue(knightBoardCapture(board1));
+        assertThat(knightBoardCapture(board1)).isTrue();
     }
 
     @Test
-    public void falseCaseTest() {
+    @DisplayName("Test for a false case of Knight's board capture (should return false)")
+    void knightBoardCapture_shouldReturnFalseForInvalidBoard() {
         int[][] board = {
             {1, 0, 1, 0, 1, 0, 1, 0},
             {0, 1, 0, 1, 0, 1, 0, 1},
@@ -46,8 +49,7 @@ public class Task8Test {
             {1, 0, 0, 0, 1, 0, 1, 0},
             {0, 0, 0, 1, 0, 1, 0, 1}
         };
-
-        assertFalse(knightBoardCapture(board));
+        assertThat(knightBoardCapture(board)).isFalse();
 
         int[][] board1 = {
             {1, 0, 0, 0, 0, 0, 0, 0},
@@ -59,12 +61,12 @@ public class Task8Test {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0}
         };
-
-        assertFalse(knightBoardCapture(board1));
+        assertThat(knightBoardCapture(board1)).isFalse();
     }
 
     @Test
-    public void emptyBoardTest() {
+    @DisplayName("Test for an empty board (should return true)")
+    void knightBoardCapture_shouldReturnTrueForEmptyBoard() {
         int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -75,6 +77,6 @@ public class Task8Test {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0}
         };
-        assertTrue(knightBoardCapture(board));
+        assertThat(knightBoardCapture(board)).isTrue();
     }
 }

@@ -20,7 +20,7 @@ final class Task3 {
         }
     }
 
-    public static int findMin(int[] mas) {
+    private static int findMin(int[] mas) {
         int min = mas[0];
         for (int ma : mas) {
             if (min > ma) {
@@ -30,7 +30,7 @@ final class Task3 {
         return min;
     }
 
-    public static int findMax(int[] mas) {
+    private static int findMax(int[] mas) {
         int max = mas[0];
         for (int ma : mas) {
             if (max < ma) {

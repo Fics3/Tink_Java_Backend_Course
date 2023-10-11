@@ -34,7 +34,7 @@ final class Task7 {
         return res;
     }
 
-    public static int countBits(int value) {
+    private static int countBits(int value) {
         int i = 1;
         int count = 0;
         while (i <= value && i != 0) {

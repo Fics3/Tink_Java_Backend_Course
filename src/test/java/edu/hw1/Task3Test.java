@@ -1,35 +1,81 @@
 package edu.hw1;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static edu.hw1.Task3.isNestable;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task3Test {
 
     @Test
-    public void nestableTrueTest() {
-        assertTrue(isNestable(new int[] {1, 2, 3, 4}, new int[] {0, 6}));
-        assertTrue(isNestable(new int[] {3, 1}, new int[] {4, 0}));
+    @DisplayName("Test for nestable arrays (should return true)")
+    void isNestable_trueCase() {
+        //arrange
+        int[] outerArray1 = {1, 2, 3, 4};
+        int[] innerArray1 = {0, 6};
+
+        int[] outerArray2 = {3, 1};
+        int[] innerArray2 = {4, 0};
+
+        //act
+        boolean result1 = isNestable(outerArray1, innerArray1);
+        boolean result2 = isNestable(outerArray2, innerArray2);
+
+        //assert
+        assertThat(result1).isTrue();
+        assertThat(result2).isTrue();
     }
 
     @Test
-    public void nestableFalseTest() {
-        assertFalse(isNestable(new int[] {9, 9, 8}, new int[] {8, 9}));
-        assertFalse(isNestable(new int[] {1, 2, 3, 4}, new int[] {2, 3}));
+    @DisplayName("Test for non-nestable arrays (should return false)")
+    void testNonNestableArrays_falseCase() {
+        //arrange
+        int[] outerArray1 = {9, 9, 8};
+        int[] innerArray1 = {8, 9};
+
+        int[] outerArray2 = {1, 2, 3, 4};
+        int[] innerArray2 = {2, 3};
+
+        //act
+        boolean result1 = isNestable(outerArray1, innerArray1);
+        boolean result2 = isNestable(outerArray2, innerArray2);
+
+        //assert
+        assertThat(result1).isFalse();
+        assertThat(result2).isFalse();
     }
 
     @Test
-    public void sameArraysTest() {
-        assertFalse(isNestable(new int[] {1, 2, 3}, new int[] {1, 2, 3}));
+    @DisplayName("Test for non-nestable same arrays (should return false)")
+    void isNestable_sameArraysCase() {
+        //arrange
+        int[] sameArray = {1, 2, 3};
+
+        //act
+        boolean result = isNestable(sameArray, sameArray);
+
+        //assert
+        assertThat(result).isFalse();
+
     }
 
     @Test
-    public void emptyArraysTest() {
-        assertFalse(isNestable(new int[] {}, new int[] {}));
-        assertFalse(isNestable(new int[] {1, 2, 3}, new int[] {}));
-        assertFalse(isNestable(new int[] {}, new int[] {1, 2, 3}));
+    @DisplayName("Test for empty arrays (should return false)")
+    void testEmptyArrays_false() {
+        //arrange
+        int[] emptyArray = {};
+        int[] nonEmptyArray = {1, 2, 3};
+
+        //act
+        boolean result1 = isNestable(emptyArray, emptyArray);
+        boolean result2 = isNestable(nonEmptyArray, emptyArray);
+        boolean result3 = isNestable(emptyArray, nonEmptyArray);
+
+        //assert
+        assertThat(result1).isFalse();
+        assertThat(result2).isFalse();
+        assertThat(result3).isFalse();
     }
 
 }

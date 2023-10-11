@@ -13,12 +13,12 @@ final class Task1 {
         String[] tmp = time.split(":");
         try {
             if (tmp.length == 2) {
-                int min = Integer.parseInt(tmp[0]);
+                int minute = Integer.parseInt(tmp[0]);
                 sec = Integer.parseInt(tmp[1]);
-                if (sec >= CONST_SEC || sec < 0 || min < 0) {
+                if (sec >= CONST_SEC || sec < 0 || minute < 0) {
                     return -1;
                 }
-                sec += min * CONST_SEC;
+                sec += minute * CONST_SEC;
                 if (sec < 0) {
                     return -1;
                 }

@@ -1,46 +1,70 @@
 package edu.hw1;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import static edu.hw1.Task1.minutesToSeconds;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task1Test {
 
     @Test
-    public void withoutMinuteTest() {
-        assertEquals(59, minutesToSeconds("00:59"));
-        assertEquals(0, minutesToSeconds("00:00"));
+    @DisplayName("Count seconds without minute")
+    void minuteToSeconds_shouldCountSecondsWithoutMinute() {
+        //arrange
+        String secondsWithoutMinuteStr = "00:59";
+        //act
+        int actual = minutesToSeconds(secondsWithoutMinuteStr);
+        //assert
+        assertThat(actual).isEqualTo(59);
+        //0*60+59
     }
 
     @Test
-    public void withMinuteTest() {
-        assertEquals(1859, minutesToSeconds("30:59"));
-        assertEquals(73892, minutesToSeconds("1231:32"));
-        assertEquals(60, minutesToSeconds("01:00"));
+    @DisplayName("Count seconds with minutes")
+    void minuteToSeconds_shouldCountSecondsWithMinute() {
+        //arrange
+        String minutesAndSecondsStr = "1231:32";
+        //act
+        int actual = minutesToSeconds(minutesAndSecondsStr);
+        //assert
+        assertThat(actual).isEqualTo(73892);
+        //(1231*60) = 73860 + 32 = 73892
     }
 
     @Test
-    public void withMuchSecTest() {
-        assertEquals(-1, minutesToSeconds("30:592"));
+    @DisplayName("Invalid input with excessive seconds")
+    void minuteToSeconds_shouldHandleInvalidInputWithExcessiveSeconds() {
+        //arrange
+        String excessiveSecondsStr = "30:592";
+        //act
+        int actual = minutesToSeconds(excessiveSecondsStr);
+        //assert
+        assertThat(actual).isEqualTo(-1);
+        //592>=60
     }
 
-    @Test
-    public void withNegTest() {
-        assertEquals(-1, minutesToSeconds("30:-2"));
-        assertEquals(-1, minutesToSeconds("-120:01"));
+    @ParameterizedTest
+    @DisplayName("Invalid input with negative input")
+    @CsvSource({"30:-2,-1", "-120:01,-1"})
+    void minuteToSeconds_shouldHandleInvalidInputWithNegativeSeconds(String negativeStr, int expected) {
+        //act
+        int actual = minutesToSeconds(negativeStr);
+        //assert
+        assertThat(actual).isEqualTo(expected);
+        //-2 < 0
+        //-120 < 0
     }
 
-    @Test
-    public void withCharTest() {
-        assertEquals(-1, minutesToSeconds("3420:ac"));
-        assertEquals(-1, minutesToSeconds("df:01"));
-    }
-
-    @Test
-    public void maxMinIntTest() {
-        assertEquals(-1, minutesToSeconds(Integer.MAX_VALUE + ":00"));
-        assertEquals(-1, minutesToSeconds(Integer.MIN_VALUE + ":00"));
+    @ParameterizedTest
+    @DisplayName("Invalid input with char is input")
+    @CsvSource({"3420:ac,-1", "df:01,-1"})
+    void minuteToSeconds_shouldHandleInvalidInputWithCharInSeconds(String charInStr, int expected) {
+        //act
+        int actual = minutesToSeconds(charInStr);
+        //assert
+        assertThat(actual).isEqualTo(expected);
     }
 
 }

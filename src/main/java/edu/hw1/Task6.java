@@ -6,23 +6,21 @@ final class Task6 {
     private static final int LOWER_BOUND = 1000;
     private static final int HIGHER_BOUND = 9999;
 
-    private static int count = 0;
-
     private Task6() {
 
     }
 
     public static int countK(int value) {
-        if (value == KAPREKAR_CONST) {
-            return count;
-        } else if (value < LOWER_BOUND || value > HIGHER_BOUND) {
-            return -1;
-        } else {
-            return countKaprekarConst(value);
-        }
+        int count = 0;
+        return switch (value) {
+            case KAPREKAR_CONST -> count;
+            case LOWER_BOUND, HIGHER_BOUND -> -1;
+            default -> countKaprekarConst(value, count);
+        };
     }
 
-    public static int countKaprekarConst(int value) {
+    private static int countKaprekarConst(int value, int count) {
+        int nowCount = count;
         if (value == KAPREKAR_CONST) {
             return count;
         }
@@ -32,13 +30,15 @@ final class Task6 {
         int minSortedValue = sortMin(valueStr.toCharArray());
 
         int res = maxSortedValue - minSortedValue;
-        count++;
+        if (res == 0) {
+            return -1;
+        }
+        nowCount++;
 
-        countKaprekarConst(res);
-        return count;
+        return countKaprekarConst(res, nowCount);
     }
 
-    public static int sortMin(char[] val) {
+    private static int sortMin(char[] val) {
 
         for (int i = 0; i < val.length; i++) {
             for (int j = 0; j < val.length; j++) {
@@ -52,7 +52,7 @@ final class Task6 {
         return Integer.parseInt(String.valueOf(val));
     }
 
-    public static int sortMax(char[] val) {
+    private static int sortMax(char[] val) {
         for (int i = 0; i < val.length; i++) {
             for (int j = 0; j < val.length; j++) {
                 if (val[i] > val[j]) {
@@ -62,11 +62,8 @@ final class Task6 {
                 }
             }
         }
-        return Integer.parseInt(String.valueOf(val));
-    }
 
-    public static void resetCount() {
-        count = 0;
+        return Integer.parseInt(String.valueOf(val));
     }
 
 }

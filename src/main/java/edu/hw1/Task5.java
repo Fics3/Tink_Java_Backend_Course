@@ -13,7 +13,7 @@ final class Task5 {
         }
     }
 
-    public static boolean isPalindrome(int value) {
+    private static boolean isPalindrome(int value) {
         String intVal = String.valueOf(value);
         if (intVal.length() >= 2) {
             return intVal.contentEquals(new StringBuilder(intVal).reverse().toString());
@@ -22,7 +22,7 @@ final class Task5 {
         }
     }
 
-    public static boolean createDescendentAndCheck(int value) {
+    private static boolean createDescendentAndCheck(int value) {
         String strValue = String.valueOf(value);
         if (strValue.length() <= 1) {
             return false;
