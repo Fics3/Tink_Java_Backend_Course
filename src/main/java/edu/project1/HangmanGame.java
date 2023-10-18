@@ -10,10 +10,6 @@ public class HangmanGame {
 
     private boolean playAgain = true;
 
-    public HangmanGame() {
-        answerManager = new AnswerManager();
-    }
-
     public HangmanGame(String word) {
         answerManager = new AnswerManager(word);
     }
@@ -47,7 +43,7 @@ public class HangmanGame {
         LOGGER.info("Thank you for playing Hangman!");
     }
 
-    public void checkChar(String input) {
+    private void checkChar(String input) {
         if (input.isEmpty()) {
             LOGGER.info("You are surrendered! The word was: " + answerManager.getTargetWord());
             playAgain = false;
@@ -65,7 +61,7 @@ public class HangmanGame {
         }
     }
 
-    public void restartGame(char input) {
+    private void restartGame(char input) {
         playAgain = (input == 'y');
         if (isPlayAgain()) {
             answerManager = new AnswerManager();

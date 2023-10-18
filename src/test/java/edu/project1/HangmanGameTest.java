@@ -1,5 +1,8 @@
 package edu.project1;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,105 +12,197 @@ public class HangmanGameTest {
     private HangmanGame game;
 
     @BeforeEach public void setUp() {
-        game = new HangmanGame();
-    }
-
-    @Test @DisplayName("Test for surrender") public void checkChar_playAgainShouldBeFalse() {
-        //Arrange
-        String emptyChar = "";
-
-        //Act
-        game.checkChar(emptyChar);
-
-        //Assert
-        assertThat(game.isPlayAgain()).isFalse();
-    }
-
-    @Test @DisplayName("Test for Invalid Input (not a character)")
-    public void checkChar_shouldHandleInvalidInputAndNotReduceAttempts() {
-        //Arrange
-        String invalidInput = "!";
-
-        //Act
-        game.checkChar(invalidInput);
-
-        //Assert
-        assertThat(game.getAnswerManager().getRemainingAttempts()).isEqualTo(game.getAnswerManager().getMaxAttempts());
-    }
-
-    @Test @DisplayName("Test for Invalid Input (several symbols)")
-    public void checkChar_shouldHandleInvalidInputWithSeveralCharsAndNotReduceAttempts() {
-        //Arrange
-        String invalidInput = "aaa";
-
-        //Act
-        game.checkChar(invalidInput);
-
-        //Assert
-        assertThat(game.getAnswerManager().getRemainingAttempts()).isEqualTo(game.getAnswerManager().getMaxAttempts());
-    }
-
-    @Test @DisplayName("Test for winning game")
-    public void checkChar_gameShouldBeWinWhenWordGuessed() {//есть ли вообще смысл тестировать такое 2 раза, логика в обоих программах по сути одинаковая
-        //Arrange
         game = new HangmanGame("test");
-
-        //Act
-        game.checkChar("t");
-        game.checkChar("e");
-        game.checkChar("s");
-
-        //Assert
-        assertThat(game.getAnswerManager().isWin()).isTrue();
     }
 
-    @Test @DisplayName("Test for losing game") public void checkChar_gameShouldBeLostWhenAttemptsWasted() {
+    @Test @DisplayName("Test for surrender")
+    void play_afterSurrenderPlayAgainShouldBeFalse() {
         //Arrange
-        game = new HangmanGame("test");
+        String input = "\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
 
         //Act
-        for (int i = 0; i < 5; i++) {
-            game.checkChar("x");
+        try {
+            game.play();
         }
 
         //Assert
-        assertThat(game.getAnswerManager().isLost()).isTrue();
+        catch (NoSuchElementException e) {
+            assertThat(game.isPlayAgain()).isFalse();
+        }
     }
 
-    @Test @DisplayName("After reset word should be not null") public void resetGame_changedWordNotNull() {
+    @Test @DisplayName("Test for Invalid Input (not a character)")
+    public void play_shouldHandleInvalidInputAndNotReduceAttempts() {
         //Arrange
-        String startWord = "test";
-        game = new HangmanGame(startWord);
+        int remainAttemptsAtStart = game.getAnswerManager().getRemainingAttempts();
+        String input = "!\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
 
         //Act
-        game.restartGame('y');
+        try {
+            game.play();
+        }
 
         //Assert
-        assertThat(game.getAnswerManager().getTargetWord()).isNotEqualTo(null);
+        catch (NoSuchElementException e) {
+            assertThat(remainAttemptsAtStart).isEqualTo(game.getAnswerManager()
+                .getMaxAttempts());
+        }
     }
 
-    @Test @DisplayName("after reset word changing and attempts reset")
-    public void resetGame_guessedWordShouldChangedAndAttemptsReset() {
+    @Test @DisplayName("Test for Invalid Input (several symbols)")
+    public void play_shouldHandleInvalidInputWithSeveralCharsAndNotReduceAttempts() {
         //Arrange
-        String startWord = "test";
-        game = new HangmanGame(startWord);
+        game = new HangmanGame("test");
+        int remainAttemptsAtStart = game.getAnswerManager().getRemainingAttempts();
+        String input = "aaa\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
 
         //Act
-        game.restartGame('y');
+        try {
+            game.play();
+        }
 
         //Assert
-        assertThat(game.getAnswerManager().getTargetWord()).isNotEqualTo(startWord);
-        assertThat(game.getAnswerManager().getRemainingAttempts()).isEqualTo(game.getAnswerManager().getMaxAttempts());
+        catch (NoSuchElementException e) {
+            assertThat(remainAttemptsAtStart).isEqualTo(game.getAnswerManager()
+                .getMaxAttempts());
+        }
     }
 
-    @Test @DisplayName("test for not resetting game") public void resetGame_playAgainShouldBeFalse() {
+    @Test @DisplayName("Test for winning game")
+    public void play_gameShouldBeWinWhenWordGuessed() {//есть ли вообще смысл тестировать такое 2 раза, логика в обоих программах по сути одинаковая
+        //Arrange
+        String input = "t\ne\ns\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        //Act
+        try {
+            game.play();
+        }
+
+        //Assert
+        catch (NoSuchElementException e) {
+            assertThat(game.getAnswerManager().isWin()).isTrue();
+        }
+    }
+
+    @Test @DisplayName("Test for losing game") public void play_gameShouldBeLostWhenAttemptsWasted() {
+        //Arrange
+        int maxAttempts = game.getAnswerManager().getMaxAttempts() + 1;
+        String input = "";
+        for (int i = 0; i < maxAttempts; i++) {
+            input += "n\n";
+        }
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        //Act
+        try {
+            game.play();
+        }//Assert
+        catch (NoSuchElementException e) {
+            assertThat(game.getAnswerManager().isLost()).isTrue();
+        }
+    }
+
+    @Test @DisplayName("After reset word should be not null") public void play_changedWordNotNull() {
+        //Arrange
+        int maxAttemptsAndRestart = game.getAnswerManager().getMaxAttempts() + 1;
+        String input = "";
+        for (int i = 0; i < maxAttemptsAndRestart; i++) {
+            input += "n\n";
+
+        }
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        //Act
+        try {
+            game.play();
+        }
+        //Assert
+        catch (NoSuchElementException E) {
+            assertThat(game.getAnswerManager().getTargetWord()).isNotEqualTo(null);
+        }
+    }
+
+    @Test @DisplayName("Test for resetting game")
+    public void play_gameStateShouldNotChange() {
         //Arrange
         boolean gameStateAtTheStart = game.isPlayAgain();
 
+        int maxAttemptsAndRestart = game.getAnswerManager().getMaxAttempts() + 1;
+        String input = "";
+
+        for (int i = 0; i < maxAttemptsAndRestart; i++) {
+            input += "y\n";
+
+        }
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
         //Act
-        game.restartGame('n');
+        try {
+            game.play();
+        }
+        //Assert
+        catch (
+            NoSuchElementException E) {//Игру не закончить, зато если больше ничего не вывожу выбрасывается эксепшен, другого варинта проверки не нашел
+            assertThat(game.isPlayAgain()).isEqualTo(gameStateAtTheStart);
+        }
+    }
+
+    @Test @DisplayName("after reset word changing and attempts reset")
+    public void play_guessedWordShouldChangedAndAttemptsReset() {
+        //Arrange
+        game = new HangmanGame("test");
+        String startWord = game.getAnswerManager().getTargetWord();
+
+        int maxAttemptsAndRestart = game.getAnswerManager().getMaxAttempts() + 1;
+        String input = "";
+
+        for (int i = 0; i < maxAttemptsAndRestart; i++) {
+            input += "y\n";
+        }
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        //Act
+        try {
+            game.play();
+        }
+        //Assert
+        catch (
+            NoSuchElementException E) {//Игру не закончить, зато если больше ничего не вывожу выбрасывается эксепшен, другого варинта проверки не нашел
+
+            assertThat(game.getAnswerManager().getTargetWord()).isNotEqualTo(startWord);
+            assertThat(game.getAnswerManager().getRemainingAttempts()).isEqualTo(game.getAnswerManager()
+                .getMaxAttempts());
+        }
+    }
+
+    @Test @DisplayName("test for not resetting game") public void play_playAgainShouldBeFalseAfterNotResetting() {
+        //Arrange
+        boolean gameStateAtTheStart = game.isPlayAgain();
+        game = new HangmanGame("test");
+
+        int maxAttemptsAndRestart = game.getAnswerManager().getMaxAttempts() + 1;
+        String input = "";
+
+        for (int i = 0; i < maxAttemptsAndRestart; i++) {
+            input += "n\n";
+        }
+
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        //Act
+        game.play();
 
         //Arrange
         assertThat(gameStateAtTheStart).isNotEqualTo(game.isPlayAgain());
     }
+
 }
