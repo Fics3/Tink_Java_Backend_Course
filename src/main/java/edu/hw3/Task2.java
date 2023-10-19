@@ -47,7 +47,7 @@ final class Task2 {
     }
 
     private static boolean isMatching(char openBracket, char curCloseBracket) {
-        return Objects.equals(POSSIBLE_BRACKETS.get(openBracket).charValue(), curCloseBracket);
+        return Objects.equals(POSSIBLE_BRACKETS.get(openBracket), curCloseBracket);
     }
 
 }
