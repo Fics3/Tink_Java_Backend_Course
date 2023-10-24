@@ -8,27 +8,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AnswerManagerTest {
     private static AnswerManager answerManager;
 
-    @BeforeAll public static void setUp() {
+    @BeforeAll
+    public static void setUp() {
         answerManager = new AnswerManager();
     }
 
-    @Test @DisplayName("Test for check word that see player not null") public void getTargetWord_shouldBeNotNull() {
+    @Test
+    @DisplayName("Test for check word that see player not null")
+    public void getTargetWord_shouldBeNotNull() {
         // Act
         String targetWord = answerManager.getTargetWord();
 
         // Assert
-        assertThat(targetWord).isNotEqualTo(null);
+        assertThat(targetWord).isNotNull();
     }
 
-    @Test @DisplayName("Test for check guessing word not null") public void getCurrentWord_shouldBeNotNull() {
+    @Test
+    @DisplayName("Test for check guessing word not null")
+    public void getCurrentWord_shouldBeNotNull() {
         // Act
         String currentWord = answerManager.getCurrentWord();
 
         // Assert
-        assertThat(currentWord).isNotEqualTo(null);
+        assertThat(currentWord).isNotNull();
     }
 
-    @Test @DisplayName("Test for making guess of word (target word should be same with current)")
+    @Test
+    @DisplayName("Test for making guess of word (target word should be same with current)")
     public void makeGuess_wordShouldBeTheSameAfterGuessing() {
         // Arrange
         answerManager = new AnswerManager("test");
@@ -43,7 +49,8 @@ public class AnswerManagerTest {
         assertThat(answerManager.isGameOver()).isTrue();
     }
 
-    @Test @DisplayName("Test for making guess of word (attempts should not reduce if answer correct)")
+    @Test
+    @DisplayName("Test for making guess of word (attempts should not reduce if answer correct)")
     public void makeGuess_attemptsNotReduceIfAnswerCorrect() {
         // Arrange
         answerManager = new AnswerManager("test");
@@ -55,7 +62,8 @@ public class AnswerManagerTest {
         assertThat(answerManager.getRemainingAttempts()).isEqualTo(answerManager.getMaxAttempts());
     }
 
-    @Test @DisplayName("Test for making guess of word (attempts should not reduce if answer incorrect)")
+    @Test
+    @DisplayName("Test for making guess of word (attempts should not reduce if answer incorrect)")
     public void makeGuess_attemptsNotReduceIfAnswerIncorrect() {
         // Arrange
         answerManager = new AnswerManager("test");
@@ -67,7 +75,8 @@ public class AnswerManagerTest {
         assertThat(answerManager.getRemainingAttempts()).isNotEqualTo(answerManager.getMaxAttempts());
     }
 
-    @Test @DisplayName("Test for wasting attempts") public void makeGuess_attemptsShouldWastes() {
+    @Test
+    @DisplayName("Test for wasting attempts") public void makeGuess_attemptsShouldWastes() {
         // Arrange
         answerManager = new AnswerManager("test");
 
@@ -77,10 +86,11 @@ public class AnswerManagerTest {
         }
 
         // Assert
-        assertThat(answerManager.getRemainingAttempts()).isEqualTo(0);
+        assertThat(answerManager.getRemainingAttempts()).isZero();
     }
 
-    @Test @DisplayName("Test for changing game state when attempts zero or below")
+    @Test
+    @DisplayName("Test for changing game state when attempts zero or below")
     public void makeGuess_isGameOver_shouldReturnTrueWhenAttemptsZeroOrBelow() {
         // Arrange
         answerManager = new AnswerManager("test");
@@ -91,10 +101,11 @@ public class AnswerManagerTest {
         }
 
         // Assert
-        assertThat(answerManager.isGameOver()).isEqualTo(true);
+        assertThat(answerManager.isGameOver()).isTrue();
     }
 
-    @Test @DisplayName("At the start remaining attempts equals maxAttempts")
+    @Test
+    @DisplayName("At the start remaining attempts equals maxAttempts")
     public void getRemainingAttempts_shouldEqualsMaxAttemptsAtTheStart() {
         // Arrange
         int remainingAttempts = answerManager.getRemainingAttempts();

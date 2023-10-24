@@ -13,7 +13,7 @@ public class DictionaryTest {
         String randomWord = getRandomWord();
 
         // Assert
-        assertThat(randomWord).isNotEqualTo(null);
+        assertThat(randomWord).isNotNull();
     }
 
 }

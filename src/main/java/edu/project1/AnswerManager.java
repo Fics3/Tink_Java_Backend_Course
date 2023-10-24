@@ -1,9 +1,9 @@
 package edu.project1;
 
 public class AnswerManager {
+    private static final int MAX_ATTEMPTS = 5;
     private String targetWord;
     private StringBuilder currentWord;
-    private static final int MAX_ATTEMPTS = 5;
     private int remainingAttempts;
 
     AnswerManager() {

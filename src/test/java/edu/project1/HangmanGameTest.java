@@ -11,11 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class HangmanGameTest {
     private HangmanGame game;
 
-    @BeforeEach public void setUp() {
+    @BeforeEach
+    public void setUp() {
         game = new HangmanGame("test");
     }
 
-    @Test @DisplayName("Test for surrender")
+    @Test
+    @DisplayName("Test for surrender")
     void play_afterSurrenderPlayAgainShouldBeFalse() {
         //Arrange
         String input = "\n";
@@ -33,7 +35,8 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("Test for Invalid Input (not a character)")
+    @Test
+    @DisplayName("Test for Invalid Input (not a character)")
     public void play_shouldHandleInvalidInputAndNotReduceAttempts() {
         //Arrange
         int remainAttemptsAtStart = game.getAnswerManager().getRemainingAttempts();
@@ -53,7 +56,8 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("Test for Invalid Input (several symbols)")
+    @Test
+    @DisplayName("Test for Invalid Input (several symbols)")
     public void play_shouldHandleInvalidInputWithSeveralCharsAndNotReduceAttempts() {
         //Arrange
         game = new HangmanGame("test");
@@ -74,8 +78,9 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("Test for winning game")
-    public void play_gameShouldBeWinWhenWordGuessed() {//есть ли вообще смысл тестировать такое 2 раза, логика в обоих программах по сути одинаковая
+    @Test
+    @DisplayName("Test for winning game")
+    public void play_gameShouldBeWinWhenWordGuessed() {
         //Arrange
         String input = "t\ne\ns\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
@@ -92,7 +97,9 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("Test for losing game") public void play_gameShouldBeLostWhenAttemptsWasted() {
+    @Test
+    @DisplayName("Test for losing game")
+    public void play_gameShouldBeLostWhenAttemptsWasted() {
         //Arrange
         int maxAttempts = game.getAnswerManager().getMaxAttempts() + 1;
         String input = "";
@@ -110,7 +117,9 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("After reset word should be not null") public void play_changedWordNotNull() {
+    @Test
+    @DisplayName("After reset word should be not null")
+    public void play_changedWordNotNull() {
         //Arrange
         int maxAttemptsAndRestart = game.getAnswerManager().getMaxAttempts() + 1;
         String input = "";
@@ -126,11 +135,12 @@ public class HangmanGameTest {
         }
         //Assert
         catch (NoSuchElementException E) {
-            assertThat(game.getAnswerManager().getTargetWord()).isNotEqualTo(null);
+            assertThat(game.getAnswerManager().getTargetWord()).isNotNull();
         }
     }
 
-    @Test @DisplayName("Test for resetting game")
+    @Test
+    @DisplayName("Test for resetting game")
     public void play_gameStateShouldNotChange() {
         //Arrange
         boolean gameStateAtTheStart = game.isPlayAgain();
@@ -155,7 +165,8 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("after reset word changing and attempts reset")
+    @Test
+    @DisplayName("after reset word changing and attempts reset")
     public void play_guessedWordShouldChangedAndAttemptsReset() {
         //Arrange
         game = new HangmanGame("test");
@@ -183,7 +194,9 @@ public class HangmanGameTest {
         }
     }
 
-    @Test @DisplayName("test for not resetting game") public void play_playAgainShouldBeFalseAfterNotResetting() {
+    @Test
+    @DisplayName("test for not resetting game")
+    public void play_playAgainShouldBeFalseAfterNotResetting() {
         //Arrange
         boolean gameStateAtTheStart = game.isPlayAgain();
         game = new HangmanGame("test");
