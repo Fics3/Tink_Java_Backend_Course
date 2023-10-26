@@ -14,9 +14,10 @@ final class Task15 {
     public static Map<Animal.Type, Integer> findSumWeightYoungerThanBoundary(List<Animal> animalList, int boundary) {
         return animalList.stream()
             .filter(animal -> animal.age() >= 1 && animal.age() <= boundary)
-            .collect
-                (Collectors.
-                    groupingBy(Animal::type, Collectors.summingInt(Animal::age)));
+            .collect(
+                Collectors
+                    .groupingBy(Animal::type, Collectors.summingInt(Animal::age))
+            );
     }
 
 }
