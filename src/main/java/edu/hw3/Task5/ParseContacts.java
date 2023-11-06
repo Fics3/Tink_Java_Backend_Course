@@ -32,8 +32,7 @@ final class ParseContacts {
             parsedContacts.sort(Comparator.comparing(Contact::getLastName).thenComparing(Contact::getFirstName));
         } else if (sortOrder.equals(DESC)) {
             parsedContacts.sort(Comparator.comparing(Contact::getLastName).reversed()
-                .thenComparing(Contact::getFirstName));
-
+                .thenComparing(Comparator.comparing(Contact::getFirstName).reversed()));
         } else {
             throw new IllegalArgumentException("Error: choose available type of sort: ASC/DESC");
         }

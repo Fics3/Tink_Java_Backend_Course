@@ -61,7 +61,7 @@ public class ParseContactTest {
 
     @Test
     @DisplayName("Test for DESC sort with first and last name")
-    void parseContacts_shouldSortDecsContactsWithLastAndFirstName() {
+    void parseContacts_shouldSortDescContactsWithLastAndFirstName() {
         // Act
         List<Contact> sortedContacts = parseContacts(names, "DESC");
 
