@@ -1,19 +1,23 @@
 package edu.hw3.Task5;
 
 public class Contact {
-    private final String firstName;
-    private final String lastName;
+    private String firstName;
+    private String lastName;
     private final String fullName;
 
     public Contact(String fullName) {
         this.fullName = fullName;
+        splitFullName();
+    }
+
+    private void splitFullName() {
         String[] lastFirstNames = fullName.split(" ");
         if (lastFirstNames.length > 1) {
-            lastName = fullName.split(" ")[1];
-            firstName = fullName.split(" ")[0];
+            lastName = lastFirstNames[1];
+            firstName = lastFirstNames[0];
         } else {
             firstName = lastFirstNames[0];
-            lastName = lastFirstNames[0];
+            lastName = "";
         }
     }
 

@@ -1,26 +1,11 @@
 package edu.hw3.Task6;
 
-import org.jetbrains.annotations.NotNull;
+import java.util.Comparator;
 
-public class Stock implements Comparable<Stock> {
-    private final int price;
-    private final String name;
+public record Stock(String name, int price) {
+    private static final Comparator<Stock> PRICE_COMPARATOR = Comparator.comparingInt(Stock::price).reversed();
 
-    public Stock(String name, int price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int compareTo(@NotNull Stock stock) {
-        return Integer.compare(stock.price, this.price);
+    public static Comparator<Stock> getPriceComparator() {
+        return PRICE_COMPARATOR;
     }
 }

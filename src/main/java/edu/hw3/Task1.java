@@ -11,7 +11,7 @@ final class Task1 {
         for (int i = 0; i < messageForEncode.length(); i++) {
 
             char currentChar = messageForEncode.charAt(i);
-            if (Character.isLetter(currentChar)) {
+            if (Character.isLetter(currentChar) && isLatinLetter(currentChar)) {
                 char mirroredChar;
 
                 if (Character.isUpperCase(currentChar)) {
@@ -27,6 +27,11 @@ final class Task1 {
         }
 
         return result.toString();
+    }
+
+    private static boolean isLatinLetter(char character) {
+        char charInUpperCase = Character.toUpperCase(character);
+        return (charInUpperCase >= 'A' && charInUpperCase <= 'Z');
     }
 
 }

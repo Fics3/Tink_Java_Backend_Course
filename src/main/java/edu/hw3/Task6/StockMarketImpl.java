@@ -1,12 +1,13 @@
 package edu.hw3.Task6;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class StockMarketImpl implements StockMarket {
     PriorityQueue<Stock> marketQueue;
 
-    public StockMarketImpl() {
-        marketQueue = new PriorityQueue<>();
+    public StockMarketImpl(Comparator<Stock> comparator) {
+        marketQueue = new PriorityQueue<>(comparator);
     }
 
     @Override

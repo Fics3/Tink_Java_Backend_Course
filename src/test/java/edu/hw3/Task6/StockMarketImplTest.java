@@ -11,7 +11,7 @@ public class StockMarketImplTest {
 
     @BeforeEach
     void setUp() {
-        stockMarket = new StockMarketImpl();
+        stockMarket = new StockMarketImpl(Stock.getPriceComparator());
     }
 
     @Test
@@ -42,7 +42,8 @@ public class StockMarketImplTest {
     }
 
     @Test
-    void testCalculateTotalMarketValue() {
+    @DisplayName("Test for most valuable stock")
+    void calculateTotalMarketValue_shouldReturnStockWithHighestPrice() {
         // Arrange
         Stock stock1 = new Stock("Adidas", 150);
         Stock stock2 = new Stock("puma", 2500);
@@ -53,6 +54,6 @@ public class StockMarketImplTest {
         Stock mostValuableStock = stockMarket.mostValuableStock();
 
         // Assert
-        assertThat(mostValuableStock.getPrice()).isEqualTo(2500);
+        assertThat(mostValuableStock.price()).isEqualTo(2500);
     }
 }

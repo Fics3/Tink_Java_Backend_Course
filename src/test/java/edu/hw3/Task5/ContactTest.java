@@ -31,6 +31,6 @@ public class ContactTest {
 
         //Assert
         assertThat(contact.getFirstName()).isEqualTo("David");
-        assertThat(contact.getLastName()).isEqualTo("David");
+        assertThat(contact.getLastName()).isEmpty();
     }
 }

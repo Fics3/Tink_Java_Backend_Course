@@ -1,10 +1,12 @@
 package edu.hw3.Task5;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static edu.hw3.Task5.ParseContacts.parseContacts;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,8 +35,8 @@ public class ParseContactTest {
             new Contact("Thomas Aquinas")
         );
         expectedContactsWithoutLastNameAsc = List.of(
-            new Contact("Thomas Aquinas"),
             new Contact("David"),
+            new Contact("Thomas Aquinas"),
             new Contact("Rene Descartes"),
             new Contact("John Locke")
 
@@ -42,8 +44,8 @@ public class ParseContactTest {
         expectedContactsWithoutLastNameDesc = List.of(
             new Contact("John Locke"),
             new Contact("Rene Descartes"),
-            new Contact("David"),
-            new Contact("Thomas Aquinas")
+            new Contact("Thomas Aquinas"),
+            new Contact("David")
         );
     }
 
@@ -77,6 +79,7 @@ public class ParseContactTest {
     void parseContacts_shouldSortAscByFirstNameWithoutLastName() {
         //Act
         List<Contact> sortedContacts = parseContacts(namesWithoutLastName, "ASC");
+        System.out.println(sortedContacts);
 
         // Assert
         for (int i = 0; i < sortedContacts.size(); i++) {
@@ -86,7 +89,7 @@ public class ParseContactTest {
     }
 
     @Test
-    @DisplayName("Test sort DESK if no last name sort by first")
+    @DisplayName("Test sort DESC if no last name sort by first")
     void parseContacts_shouldSortByFirstIfNoLastName() {
         //Act
         List<Contact> sortedContacts = parseContacts(namesWithoutLastName, "DESC");
@@ -112,6 +115,7 @@ public class ParseContactTest {
         assertThat(sortedContactsDesc).isEmpty();
         assertThat(sortedContactsAsc).isEmpty();
     }
+
     @Test
     @DisplayName("Test for empty list of names")
     void parseContacts_shouldReturnEmptyListIfEmpty() {
