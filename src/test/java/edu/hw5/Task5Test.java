@@ -10,8 +10,8 @@ public class Task5Test {
     @ParameterizedTest
     @DisplayName("Test for valid license")
     @CsvSource({
-        "А123БВ45",
-        "А123БВ451"
+        "А123СВ45",
+        "А123АУ451"
     })
     public void isValidLicensePlate_shouldReturnTrueIfLicenseInCorrectFormat(String licensePlate) {
         // Act

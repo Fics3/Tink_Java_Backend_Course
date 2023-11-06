@@ -10,7 +10,8 @@ final class Task5 {
     }
 
     public static boolean isValidLicensePlate(String licensePlate) {
-        Pattern pattern = Pattern.compile("^[А-Я]{1}\\d{3}[А-Я]{2}\\d{2,3}$");
+        String validChars = "АВЕКМНОРСТУХ";
+        Pattern pattern = Pattern.compile("^[" + validChars + "]{1}\\d{3}[" + validChars + "]{2}\\d{2,3}$");
         Matcher matcher = pattern.matcher(licensePlate);
         return matcher.matches();
     }
