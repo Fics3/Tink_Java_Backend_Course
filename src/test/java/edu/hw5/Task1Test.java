@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static edu.hw5.Task1.calculateSessionDuration;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Test1Test {
+public class Task1Test {
 
     @Test
     @DisplayName("Test for session in same day")
