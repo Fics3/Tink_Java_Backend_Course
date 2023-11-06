@@ -13,17 +13,10 @@ final class Task3 {
         Map<Object, Integer> frequencyMap = new HashMap<>();
 
         for (Object item : list) {
-            getOrDefault(frequencyMap, item);
+            frequencyMap.put(item, frequencyMap.getOrDefault(item, 0) + 1);
         }
 
         return frequencyMap;
     }
 
-    private static void getOrDefault(Map<Object, Integer> frequencyMap, Object item) {
-        if (frequencyMap.containsKey(item)) {
-            frequencyMap.put(item, frequencyMap.get(item) + 1);
-        } else {
-            frequencyMap.put(item, 1);
-        }
-    }
 }

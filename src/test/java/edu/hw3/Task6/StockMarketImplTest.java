@@ -54,6 +54,6 @@ public class StockMarketImplTest {
         Stock mostValuableStock = stockMarket.mostValuableStock();
 
         // Assert
-        assertThat(mostValuableStock.price()).isEqualTo(2500);
+        assertThat(mostValuableStock.getPrice()).isEqualTo(2500);
     }
 }

@@ -11,7 +11,7 @@ final class Task1 {
         for (int i = 0; i < messageForEncode.length(); i++) {
 
             char currentChar = messageForEncode.charAt(i);
-            if (Character.isLetter(currentChar) && isLatinLetter(currentChar)) {
+            if (isLatinLetter(currentChar)) {
                 char mirroredChar;
 
                 if (Character.isUpperCase(currentChar)) {

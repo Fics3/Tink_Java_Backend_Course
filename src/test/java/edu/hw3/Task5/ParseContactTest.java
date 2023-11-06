@@ -3,10 +3,8 @@ package edu.hw3.Task5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static edu.hw3.Task5.ParseContacts.parseContacts;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,7 +37,6 @@ public class ParseContactTest {
             new Contact("Thomas Aquinas"),
             new Contact("Rene Descartes"),
             new Contact("John Locke")
-
         );
         expectedContactsWithoutLastNameDesc = List.of(
             new Contact("John Locke"),
@@ -57,7 +54,8 @@ public class ParseContactTest {
 
         // Assert
         for (int i = 0; i < sortedContacts.size(); i++) {
-            assertThat(sortedContacts.get(i).getFullName()).isEqualTo(expectedContactsAsc.get(i).getFullName());
+            assertThat(sortedContacts.get(i).getFirstName()).isEqualTo(expectedContactsAsc.get(i).getFirstName());
+            assertThat(sortedContacts.get(i).getLastName()).isEqualTo(expectedContactsAsc.get(i).getLastName());
         }
     }
 
@@ -69,7 +67,8 @@ public class ParseContactTest {
 
         // Assert
         for (int i = 0; i < sortedContacts.size(); i++) {
-            assertThat(sortedContacts.get(i).getFullName()).isEqualTo(expectedContactsDesc.get(i).getFullName());
+            assertThat(sortedContacts.get(i).getFirstName()).isEqualTo(expectedContactsDesc.get(i).getFirstName());
+            assertThat(sortedContacts.get(i).getLastName()).isEqualTo(expectedContactsDesc.get(i).getLastName());
         }
 
     }
@@ -79,12 +78,13 @@ public class ParseContactTest {
     void parseContacts_shouldSortAscByFirstNameWithoutLastName() {
         //Act
         List<Contact> sortedContacts = parseContacts(namesWithoutLastName, "ASC");
-        System.out.println(sortedContacts);
 
         // Assert
         for (int i = 0; i < sortedContacts.size(); i++) {
-            assertThat(sortedContacts.get(i).getFullName()).isEqualTo(expectedContactsWithoutLastNameAsc.get(i)
-                .getFullName());
+            assertThat(sortedContacts.get(i).getFirstName()).isEqualTo(expectedContactsWithoutLastNameAsc.get(i)
+                .getFirstName());
+            assertThat(sortedContacts.get(i).getLastName()).isEqualTo(expectedContactsWithoutLastNameAsc.get(i)
+                .getLastName());
         }
     }
 
@@ -96,8 +96,10 @@ public class ParseContactTest {
 
         // Assert
         for (int i = 0; i < sortedContacts.size(); i++) {
-            assertThat(sortedContacts.get(i).getFullName()).isEqualTo(expectedContactsWithoutLastNameDesc.get(i)
-                .getFullName());
+            assertThat(sortedContacts.get(i).getFirstName()).isEqualTo(expectedContactsWithoutLastNameDesc.get(i)
+                .getFirstName());
+            assertThat(sortedContacts.get(i).getLastName()).isEqualTo(expectedContactsWithoutLastNameDesc.get(i)
+                .getLastName());
         }
     }
 
