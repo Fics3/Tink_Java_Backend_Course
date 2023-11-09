@@ -65,10 +65,10 @@ public class ChainDateFormatterTest {
     void parse_shouldWorkWithYearMonthDayFormat() {
         //Arrange
         ChainDateFormatter formatter = new YearMonthDayFormatter();
-        LocalDate expected = LocalDate.of(2022, 10, 15);
+        LocalDate expected = LocalDate.of(2022, 10, 21);
 
         //Act
-        var result = formatter.parse("2022-10-15");
+        var result = formatter.parse("2022-10-21");
         //Assert
         assertThat(result.isPresent()).isTrue();
         assertThat(result.get()).isEqualTo(expected);

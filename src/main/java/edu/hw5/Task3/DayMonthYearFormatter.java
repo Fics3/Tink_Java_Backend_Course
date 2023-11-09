@@ -9,7 +9,7 @@ public class DayMonthYearFormatter extends ChainDateFormatter {
     @Override
     public Optional<LocalDate> parse(String date) {
         try {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
             LocalDate result = LocalDate.parse(date, dateTimeFormatter);
             return Optional.of(result);
         } catch (Exception e) {
