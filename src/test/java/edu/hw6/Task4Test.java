@@ -18,6 +18,8 @@ class Task4Test {
 
     @BeforeAll
     static void setUp() throws IOException {
+        Files.createDirectories(testFilePath.getParent());
+
         Files.createFile(testFilePath);
     }
 
