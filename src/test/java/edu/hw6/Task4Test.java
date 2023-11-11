@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static edu.hw6.Task4.chainPrintInFile;
@@ -13,10 +14,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class Task4Test {
 
-    private final Path testFilePath = Path.of("src/test/resources/Task4/test.txt");
+    private static final Path testFilePath = Path.of("src/test/resources/Task4/test.txt");
 
-    @AfterEach
-    void cleanup() throws IOException {
+    @BeforeAll
+    static void setUp() throws IOException {
+        Files.createFile(testFilePath);
+    }
+
+    @AfterAll
+    static void cleanup() throws IOException {
         Files.deleteIfExists(testFilePath);
     }
 
