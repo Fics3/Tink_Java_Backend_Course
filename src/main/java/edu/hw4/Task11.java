@@ -11,9 +11,9 @@ final class Task11 {
 
     //Task11 list of animals that bites and higher than boundary
     public static List<Animal> bitesAndHigherBoundary(List<Animal> animalList, int heightBoundary) {
-        return animalList.stream().filter(animal -> animal.height() >= heightBoundary && animal.bites())
-            .collect(
-                Collectors.toList());
+        return animalList.stream()
+            .filter(animal -> animal.height() >= heightBoundary && animal.bites())
+            .collect(Collectors.toList());
     }
 
 }

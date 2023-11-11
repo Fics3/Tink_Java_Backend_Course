@@ -11,8 +11,9 @@ final class Task2 {
     }
 
     //Task2 sort by weight from big to low
-    public static List<Animal> sortWeight(List<Animal> animalList) {
-        return animalList.stream().sorted(Comparator.comparingInt(Animal::weight).reversed())
+    public static List<Animal> sortWeight(List<Animal> animalList, int k) {
+        return animalList.stream().sorted(Comparator
+                .comparingInt(Animal::weight).reversed()).limit(Math.abs(k))
             .collect(Collectors.toList());
     }
 }

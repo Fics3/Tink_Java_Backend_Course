@@ -1,7 +1,10 @@
 package edu.hw4;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 final class Task6 {
@@ -15,8 +18,8 @@ final class Task6 {
         return animalList.stream()
             .collect(Collectors.toMap(
                 Animal::type,
-                animal -> animal,
-                (existing, replacement) -> existing.weight() >= replacement.weight() ? existing : replacement
+                Function.identity(),
+                BinaryOperator.maxBy(Comparator.comparing(Animal::weight))
             ));
     }
 }

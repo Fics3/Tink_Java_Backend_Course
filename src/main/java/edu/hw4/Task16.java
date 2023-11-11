@@ -13,8 +13,10 @@ final class Task16 {
     //Task16 should sort by type then by sex then by name
     public static List<Animal> sortByTypeSexName(List<Animal> animalList) {
         return animalList.stream()
-            .sorted(Comparator.comparing(Animal::type).thenComparing(Animal::sex).thenComparing(Animal::name)).collect(
-                Collectors.toList());
+            .sorted(Comparator.comparing(Animal::type)
+            .thenComparing(Animal::sex)
+            .thenComparing(Animal::name))
+            .collect(Collectors.toList());
     }
 
 }

@@ -13,7 +13,7 @@ final class Task13 {
     public static List<Animal> namesMoreThanOneWord(List<Animal> animalList) {
         return animalList.stream().filter(animal -> {
                 String name = animal.name();
-                return name != null && !name.trim().isEmpty() && name.split(" ").length > 1;
+                return name != null && name.stripLeading().split(" ").length > 1;
             }
         ).collect(Collectors.toList());
     }

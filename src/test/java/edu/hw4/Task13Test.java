@@ -3,6 +3,8 @@ package edu.hw4;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import static edu.hw4.Task13.namesMoreThanOneWord;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -72,5 +74,22 @@ public class Task13Test {
 
         // Assert
         assertThat(result.size()).isZero();
+    }
+
+    @ParameterizedTest
+    @DisplayName("Test for name with much whitespace")
+    @CsvSource({"sdsdsd    ,0", "sdsdsd     ,0", "sdsd     sdsdsd,1"})
+    void namesMoreThanOneWord_shouldHandleNameWithMuchWhitespace(String nameWithWhiteSpace, int expected) {
+        //Arrange
+        List<Animal> animalList = List.of(
+            new Animal(nameWithWhiteSpace, Animal.Type.CAT, Animal.Sex.M, 80, 100, 200, true)
+        );
+
+        //Act
+        var result = namesMoreThanOneWord(animalList);
+
+        //Assert
+        assertThat(result.size()).isEqualTo(expected);
+
     }
 }
