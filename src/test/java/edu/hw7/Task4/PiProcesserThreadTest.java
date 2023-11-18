@@ -17,7 +17,7 @@ public class PiProcesserThreadTest {
 
         // Act
         PiProcessorThread piProcessorThread = new PiProcessorThread(start, end, circleCount, totalCount);
-        piProcessorThread.start();
+        piProcessorThread.run();
 
         // Assert
         assertThat(circleCount.get()).isGreaterThanOrEqualTo(0);
