@@ -1,0 +1,17 @@
+ITERATIONS = 100000000;
+NUM_THREADS = 10;
+NUM_EXPERIMENTS = 100;
+
+
+100000000 One thread result: 3.14175536
+100000000 Single-threaded execution time: 2644.0 milliseconds
+100000000 Average speedup with 1 threads: 2.21160294280546
+100000000 Average speedup with 2 threads: 4.4233644582549445
+100000000 Average speedup with 3 threads: 6.228136307065714
+100000000 Average speedup with 4 threads: 8.288937662423645
+100000000 Average speedup with 5 threads: 9.68905861358947
+100000000 Average speedup with 6 threads: 11.036787463229011
+100000000 Average speedup with 7 threads: 12.497184072021092
+100000000 Average speedup with 8 threads: 10.735609161529815
+100000000 Average speedup with 9 threads: 10.910523024216072
+100000000 Average speedup with 10 threads: 11.390415500992084
