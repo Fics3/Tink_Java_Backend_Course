@@ -1,0 +1,62 @@
+{a.v.petrov=aaaa, v.v.belov =m123}
+No threads version time nanosec: 3.147350816E10
+{a.v.petrov=aaaa, v.v.belov =m123}
+1 threads time nanosec: 3.2025219826E10
+Speedup: 0.9827725876981463
+{a.v.petrov=aaaa, v.v.belov =m123}
+2 threads time nanosec: 1.6338979224E10
+Speedup: 1.9262836269336332
+{a.v.petrov=aaaa, v.v.belov =m123}
+3 threads time nanosec: 1.1230350605E10
+Speedup: 2.8025401224773248
+{a.v.petrov=aaaa, v.v.belov =m123}
+4 threads time nanosec: 8.644978269E9
+Speedup: 3.640669436135051
+{a.v.petrov=aaaa, v.v.belov =m123}
+5 threads time nanosec: 7.198675163E9
+Speedup: 4.372125071258754
+{a.v.petrov=aaaa, v.v.belov =m123}
+6 threads time nanosec: 6.161993815E9
+Speedup: 5.107682530187675
+{a.v.petrov=aaaa, v.v.belov =m123}
+7 threads time nanosec: 5.429188355E9
+Speedup: 5.797092696372292
+{a.v.petrov=aaaa, v.v.belov =m123}
+8 threads time nanosec: 4.925224464E9
+Speedup: 6.390268786742549
+{a.v.petrov=aaaa, v.v.belov =m123}
+9 threads time nanosec: 5.112356856E9
+Speedup: 6.156359786007864
+{a.v.petrov=aaaa, v.v.belov =m123}
+10 threads time nanosec: 5.500381686E9
+Speedup: 5.722058932766216
+{a.v.petrov=aaaa, v.v.belov =m123}
+11 threads time nanosec: 5.770881396E9
+Speedup: 5.453847688121851
+{a.v.petrov=aaaa, v.v.belov =m123}
+12 threads time nanosec: 5.780838006E9
+Speedup: 5.4444542689716044
+{a.v.petrov=aaaa, v.v.belov =m123}
+13 threads time nanosec: 5.744542862E9
+Speedup: 5.478853394618469
+{a.v.petrov=aaaa, v.v.belov =m123}
+14 threads time nanosec: 5.560426184E9
+Speedup: 5.660269036672819
+{a.v.petrov=aaaa, v.v.belov =m123}
+15 threads time nanosec: 5.623904192E9
+Speedup: 5.596380572195921
+{a.v.petrov=aaaa, v.v.belov =m123}
+16 threads time nanosec: 5.737316025E9
+Speedup: 5.485754666965552
+{a.v.petrov=aaaa, v.v.belov =m123}
+17 threads time nanosec: 5.473397699E9
+Speedup: 5.750268825842907
+{a.v.petrov=aaaa, v.v.belov =m123}
+18 threads time nanosec: 5.935924707E9
+Speedup: 5.302208116434588
+{a.v.petrov=aaaa, v.v.belov =m123}
+19 threads time nanosec: 5.294204414E9
+Speedup: 5.944898552985869
+{a.v.petrov=aaaa, v.v.belov =m123}
+20 threads time nanosec: 5.124143663E9
+Speedup: 6.14219862476951
