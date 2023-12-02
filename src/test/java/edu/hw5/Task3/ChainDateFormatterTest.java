@@ -38,7 +38,7 @@ public class ChainDateFormatterTest {
         var result = chainDateFormatter.parse(input);
 
         //Assert
-        assertThat(result.isPresent()).isTrue();
+        assertThat(result).isPresent();
         assertThat(result.get()).isEqualTo(expected);
 
     }
@@ -55,7 +55,7 @@ public class ChainDateFormatterTest {
         var result = formatter.parse(input);
 
         //Assert
-        assertThat(result.isPresent()).isTrue();
+        assertThat(result).isPresent();
         assertThat(result.get()).isEqualTo(expected);
 
     }
@@ -70,7 +70,7 @@ public class ChainDateFormatterTest {
         //Act
         var result = formatter.parse("2022-10-21");
         //Assert
-        assertThat(result.isPresent()).isTrue();
+        assertThat(result).isPresent();
         assertThat(result.get()).isEqualTo(expected);
 
     }
@@ -86,7 +86,7 @@ public class ChainDateFormatterTest {
         var result = formatter.parse("15/10/2022");
 
         //Assert
-        assertThat(result.isPresent()).isTrue();
+        assertThat(result).isPresent();
         assertThat(result.get()).isEqualTo(expected);
 
     }

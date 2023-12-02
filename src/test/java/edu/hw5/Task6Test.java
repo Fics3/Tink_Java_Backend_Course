@@ -11,9 +11,9 @@ public class Task6Test {
     @ParameterizedTest
     @DisplayName("Test for valid cases")
     @CsvSource({
-        "Hello, Hel",         // 'Hel' is a subsequence of 'Hello'
-        "OpenAI, pen",        // 'pen' is a subsequence of 'OpenAI'
-        "123456, 23 "          // '23' is a subsequence of '123456'
+        "Hello,Heo",         // 'Heo' is a subsequence of 'Hello'
+        "OpenAI,peA",        // 'peA' is a subsequence of 'OpenAI'
+        "123456,26"          // '26' is a subsequence of '123456'
     })
     public void isSubsequence_shouldReturnTrueIfSubstringIsSubsequence(String mainSequence, String substring) {
         // Act
@@ -26,8 +26,9 @@ public class Task6Test {
     @ParameterizedTest
     @DisplayName("Test for invalid cases")
     @CsvSource({
-        "Test, ttt",         // 'ttt' is not a subsequence of 'Test'
-        "Hello, Bye"         // 'Bye' is not a subsequence of 'Hello'
+        "Test,ttt",         // 'ttt' is not a subsequence of 'Test'
+        "Hello,eq",         // 'eq' is not a subsequence of 'Hello'
+        "123456,432"        // '432' is not a subsequence of '123456'
     })
     public void isSubsequence_shouldReturnFalseIfSubstringIsNotSubsequence(String mainSequence, String substring) {
         // Act
