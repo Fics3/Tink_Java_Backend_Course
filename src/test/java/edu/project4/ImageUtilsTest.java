@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ImageUtilsTest {
 
-    private static final String TEST_DIRECTORY_NAME = "src/test/resources/project4/";
+    private static final String TEST_DIRECTORY_NAME = "src/test/resources/project4";
 
     static Arguments[] formats() {
         return new Arguments[] {
