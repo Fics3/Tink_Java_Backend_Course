@@ -29,7 +29,7 @@ public class ImageUtilsTest {
     @BeforeAll
     static void setUp() {
         try {
-            Files.createDirectory(Path.of(TEST_DIRECTORY_NAME));
+            Files.createDirectories(Path.of(TEST_DIRECTORY_NAME));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
