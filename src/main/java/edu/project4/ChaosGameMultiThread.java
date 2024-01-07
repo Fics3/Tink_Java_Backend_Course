@@ -67,7 +67,6 @@ public class ChaosGameMultiThread implements FractalGenerator {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        executorService.shutdown();
         gammaCorrection(fractalImage);
         return fractalImage;
 

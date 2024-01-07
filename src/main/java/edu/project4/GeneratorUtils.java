@@ -28,10 +28,11 @@ final class GeneratorUtils {
 
         for (int i = 0; i < fractalImage.width(); i++) {
             for (int j = 0; j < fractalImage.height(); j++) {
-                if (fractalImage.pixel(i, j) != null) {
-                    if (fractalImage.pixel(i, j).normal() > max) {
-                        max = fractalImage.pixel(i, j).normal();
-                    }
+                if (fractalImage.pixel(i, j) == null) {
+                    continue;
+                }
+                if (fractalImage.pixel(i, j).normal() > max) {
+                    max = fractalImage.pixel(i, j).normal();
                 }
             }
         }
