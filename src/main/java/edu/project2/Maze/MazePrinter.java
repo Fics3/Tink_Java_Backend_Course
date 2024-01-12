@@ -5,9 +5,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public final class MazePrinter {
 
-    private final static char WALL_CHAR = '█';
-    private final static char EMPTY_CHAR = ' ';
-    private final static char WAY_CHAR = '*';
+    private static final char WALL_CHAR = '█';
+    private static final char EMPTY_CHAR = ' ';
+    private static final char WAY_CHAR = '*';
 
     private MazePrinter() {
 
