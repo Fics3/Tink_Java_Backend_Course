@@ -1,0 +1,16 @@
+ITERATIONS = 100000000;
+NUM_EXPERIMENTS = 100;
+
+
+Single thread result (10000 iterations): 3.1414480000000014
+Absolute Error: 1.4465358979176557E-4
+Relative Error: 0.0046044667702693646%
+Single thread result (100000 iterations): 3.1416244000000004
+Absolute Error: 3.1746410207311726E-5
+Relative Error: 0.0010105196219833325%
+Single thread result (1000000 iterations): 3.1415076799999997
+Absolute Error: 8.497358979342451E-5
+Relative Error: 0.002704793369577307%
+Single thread result (10000000 iterations): 3.1415851639999994
+Absolute Error: 7.489589793685525E-6
+Relative Error: 2.38401047479132E-4%
